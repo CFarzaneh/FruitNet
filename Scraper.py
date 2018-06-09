@@ -44,7 +44,6 @@ def main():
 	filename = args.File
 	file_number = 1
 	for offset in range( 0, number_results, 50 ):
-		out_file = open( filename + str(file_number), 'w')
 		print( '>> Fetching images... ')
 		params["offset"] = offset
 		search = requests.get(Bing_URL, headers=headers, params=params)
