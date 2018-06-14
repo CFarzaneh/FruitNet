@@ -1,60 +1,63 @@
 import requests
 import sys
 import argparse
-#import tqdm
 import os
-import os.path
 
 def main():
 	
 	# script parser
 	parser = argparse.ArgumentParser()
-	parser.add_argument('-Search', required = 'true', help = 'Search term')
-	parser.add_argument('-File', required = 'true' ,help = 'Name of output file')
+	parser.add_argument('-Search', required = 'true', help = 'Search query')
+	parser.add_argument('-File', required = 'true' ,help = 'Name of destination directory')
 	args = parser.parse_args()
 
 	#Bing API declaration
 	Bing_URL = "https://api.cognitive.microsoft.com/bing/v7.0/images/search"
-	Bing_key = 'a5b720e54ce94803a38959afda2115d7'
+	Bing_key = '90e220eba2cc4e54bf89929cf242665c'
 	headers = {"Ocp-Apim-Subscription-Key": Bing_key }
-	params = {'q': args.Search, 'license':'public', 'imageType':'photo', 'count' : 250 , 'offset' : 0}
-
-	#Make API request		
-	response = requests.get( Bing_URL, headers = headers, params = params)
+	
+	#Make API search request		
+	parameters = {'q': args.Search, 'license':'All', 'imageType':'photo', 'count' : 250 , 'offset' : 0}
+	response = requests.get( Bing_URL, headers = headers, params = parameters)
 	search_results = response.json()
+	number_results = search_results['totalEstimatedMatches']
+	number_results = min( number_results, 250)
 	
-	
-	if search_results['totalEstimatedMatches'] > 250:
-		number_results = 250
-	else:
-		number_results = search_results['totalEstimatedMatches']
-
 	print( '>> Found '+  str(number_results) +  ' results that matched \'' +  args.Search + '\'')
 	
-	if not os.path.exists(args.File):
-		print( '>> Creating Directory \'' + args.File + '\'')
-		os.mkdir(args.File)
-		os.chdir(args.File)	
-	else:
-		print('>> Directory \'' + args.File + '\' already exists')
-		sys.exit()
+	#Create new directory if it doesn't already exist
 
+	if not os.path.exists(args.File):
+		print( '>> Creating Directory \'' + args.File + '\'\n')
+		os.chdir('dataset')	#Save images in directory called dataset
+		os.mkdir(args.File)
 
 	#Save to file
-	filename = args.File
+	os.chdir(args.File)	
 	file_number = 1
+
+	#pull 50 images at a time until no more to pull
+	print ('Fetching images')
+
 	for offset in range( 0, number_results, 50 ):
-		print( '>> Fetching images... ')
-		params["offset"] = offset
-		search = requests.get(Bing_URL, headers=headers, params=params)
-		search.raise_for_status()
-		results = search.json()
+		print( '>> Fetching more images... ')
+		parameters["offset"] = offset
+		response = requests.get(Bing_URL, headers=headers, params=parameters)
+		search_results = response.json()
 		
-		for temp in results['value']:
-			print('>> Fetching image ' +  str(file_number))
+		#request image from URL & write to file
+		for temp in search_results['value']:
+			print('>> Fetching image ' + args.File+ str(file_number))
+			try :
+				response = requests.get(temp['contentUrl'])	
+				
+			except:
+				search_results = response.json()
+				print(search_results['message'])
+				continue
+				
 			out_file = open( args.File + str(file_number) + '.jpeg', 'w')
-			r = requests.get(temp['contentUrl'])
-			out_file.write(r.content)
+			out_file.write(response.content)
 			out_file.close()
 			file_number += 1	
 		

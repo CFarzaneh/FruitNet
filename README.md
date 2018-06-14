@@ -10,3 +10,9 @@ Scraper.py
 4. If no items are found, the program will throw an error (That I have yet to catch and handle)
 
 
+The Following example searches Bing for images of Ferraris and saves 250 of them into a folder called Italian_cars
+
+Example:
+	python3 Scraper.py -Search Ferrari -File Italian_Cars
+
+
