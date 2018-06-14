@@ -29,7 +29,6 @@ def main():
 
 	if not os.path.exists(args.File):
 		print( '>> Creating Directory \'' + args.File + '\'\n')
-		os.chdir('dataset')	#Save images in directory called dataset
 		os.mkdir(args.File)
 
 	#Save to file
@@ -47,15 +46,17 @@ def main():
 		
 		#request image from URL & write to file
 		for temp in search_results['value']:
-			print('>> Fetching image ' + args.File+ str(file_number))
+			
 			try :
 				response = requests.get(temp['contentUrl'])	
 				
 			except:
-				search_results = response.json()
-				print(search_results['message'])
-				continue
 				
+				print('Cannot download image from \'' +  temp['contentUrl'])
+				print('Skipping...\n')
+				continue
+
+			print('>> Fetching image ' + args.File+ str(file_number))		
 			out_file = open( args.File + str(file_number) + '.jpeg', 'w')
 			out_file.write(response.content)
 			out_file.close()
