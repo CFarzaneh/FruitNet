@@ -20,10 +20,15 @@ def main():
 	parameters = {'q': args.Search, 'license':'All', 'imageType':'photo', 'count' : 250 , 'offset' : 0}
 	response = requests.get( Bing_URL, headers = headers, params = parameters)
 	search_results = response.json()
+	
+	if len(search_results['value']) == 0:
+		print( '\nNo matches found for \'' + args.Search + '\'\n')
+		sys.exit()
+
 	number_results = search_results['totalEstimatedMatches']
 	number_results = min( number_results, 250)
 	
-	print( '>> Found '+  str(number_results) +  ' results that matched \'' +  args.Search + '\'')
+	print( '\n>> Found '+  str(number_results) +  ' results that matched \'' +  args.Search + '\'')
 	
 	#Create new directory if it doesn't already exist
 
@@ -52,12 +57,12 @@ def main():
 				
 			except:
 				
-				print('Cannot download image from \'' +  temp['contentUrl'])
+				print('Cannot download image from \'' +  temp['contentUrl'] + '\'\n')
 				print('Skipping...\n')
 				continue
 
 			print('>> Fetching image ' + args.File+ str(file_number))		
-			out_file = open( args.File + str(file_number) + '.jpeg', 'w')
+			out_file = open( args.File + str(file_number) + '.jpeg', 'wb')
 			out_file.write(response.content)
 			out_file.close()
 			file_number += 1	
