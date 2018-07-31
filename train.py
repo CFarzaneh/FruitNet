@@ -1,6 +1,3 @@
-# USAGE
-# python train.py --dataset dataset --model pokedex.model --labelbin lb.pickle
-
 import matplotlib
 matplotlib.use("Agg")
 
@@ -22,7 +19,7 @@ import os
 args = {'dataset': 'dataset', 'model': 'fruitnet.model', 'labelbin': 'lb.pickle', 'plot': 'plot.png'}
 
 EPOCHS = 100
-INIT_LR = 1e-3
+INIT_LR = 1e-2
 BS = 32
 IMAGE_DIMS = (96, 96, 3)
 
