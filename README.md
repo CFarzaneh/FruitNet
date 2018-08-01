@@ -46,7 +46,7 @@ python3 train.py
 
 Once the model has been saved, you are now ready to predict your images. It is important that your test images are independent of the images used to create the model. test the model, make sure the fruitnet.model file exists and run:
 
-python3 classify.py
+	python3 classify.py
 
 
 Once the program is ready to accept an image, it will prompt you to insert a path to an image of any format. A simple drag & drop can be used to quickly retrieve the images absolute path. 
