@@ -37,16 +37,16 @@ train.py
 	To train the model, run:
 		 python3 train.py
 
-	** Make sure that you have a folder called dataset in the same directory that contains folders of the 5 fruits, each with png images of the fruits. After training, the model will be saved as fruitnet.model.**
+** Make sure that you have a folder called dataset in the same directory that contains folders of the 5 fruits, each with png images of the fruits. After training, the model will be saved as fruitnet.model.**
 
 
 
-classify.py
+	classify.py
 
 
 Once the model has been saved, you are now ready to predict your images. It is important that your test images are independent of the images used to create the model. test the model, make sure the fruitnet.model file exists and run:
 
-python3 classify.py
+	python3 classify.py
 
 
 Once the program is ready to accept an image, it will prompt you to insert a path to an image of any format. A simple drag & drop can be used to quickly retrieve the images absolute path. 
