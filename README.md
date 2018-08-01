@@ -35,7 +35,7 @@ File_Directory
 	train.py
 
 To train the model, run:
-	 python3 train.py
+	python3 train.py
 
 ** Make sure that you have a folder called dataset in the same directory that contains folders of the 5 fruits, each with png images of the fruits. After training, the model will be saved as fruitnet.model.**
 
