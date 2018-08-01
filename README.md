@@ -1,11 +1,11 @@
 # FruitNet
 A groundbreaking convolutional neural network that will classify fruit images.
 Supports predicitons on the following fruit:
-	- Red Apples
-	- Bananas
-	- Pineapples
-	- Green Grapes
-	- Oranges
+		- Red Apples
+		- Bananas
+		- Pineapples
+		- Green Grapes
+		- Oranges
 
 	Scraper.py
 
