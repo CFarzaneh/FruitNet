@@ -7,7 +7,7 @@ Supports predicitons on the following fruit:
 	- Green Grapes
 	- Oranges
 
-Scraper.py
+	Scraper.py
 
 1. Requires two arguments "-Search" and "-File". Search is the string that searches Bing's query and -File specifies the name of the directory in which the found images will be saved in
 2. Saves files as -File + counter +.jpeg
