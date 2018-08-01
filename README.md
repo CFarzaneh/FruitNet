@@ -31,7 +31,7 @@ Example:
 	|	|----Ferrari3.jpeg
 
 
-train.py
+	train.py
 
 To train the model, run:
 python3 train.py
