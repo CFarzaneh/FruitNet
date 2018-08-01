@@ -21,14 +21,14 @@ The Following example searches Bing for images of Ferraris and saves them into a
 Example:
 	python Scraper.py -Search Ferrari -File Italian_Cars
 
-File_Directory
-|
-|
-|-------Italian_cars
-|	|
-|	|----Ferrari1.jpeg
-|	|----Ferrari2.jpeg
-|	|----Ferrari3.jpeg
+	File_Directory
+	|
+	|
+	|-------Italian_cars
+	|	|
+	|	|----Ferrari1.jpeg
+	|	|----Ferrari2.jpeg
+	|	|----Ferrari3.jpeg
 
 
 
