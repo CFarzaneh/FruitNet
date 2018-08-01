@@ -19,6 +19,7 @@ Supports predicitons on the following fruit:
 The Following example searches Bing for images of Ferraris and saves them into a folder called Italian_cars
 
 Example:
+	
 	python Scraper.py -Search Ferrari -File Italian_Cars
 
 	File_Directory
