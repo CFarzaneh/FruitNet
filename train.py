@@ -29,16 +29,17 @@ labels = []
 print("[INFO] loading images...")
 imagePaths = sorted(list(paths.list_images(args["dataset"])))
 random.seed(42)
-random.shuffle(imagePaths)
+4andom.shuffle(imagePaths)
 
 for imagePath in tqdm(imagePaths):
 	image = cv2.imread(imagePath)
 	image = cv2.resize(image, (IMAGE_DIMS[1], IMAGE_DIMS[0]))
 	image = img_to_array(image)
 	data.append(image)
- 
+
 	label = imagePath.split(os.path.sep)[-2]
 	labels.append(label)
+
 
 data = np.array(data, dtype="float") / 255.0
 labels = np.array(labels)

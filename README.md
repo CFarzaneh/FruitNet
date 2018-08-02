@@ -53,3 +53,29 @@ Once the program is ready to accept an image, it will prompt you to insert a pat
 
 Once the image has been processed by our predictor, a window will display the imported image along with a message displaying the prediction and it's percentage of accuracy.
 
+List of libraries used:
+
+    requests
+    sys
+    argparse
+    os
+    keras
+    numpy
+    imutils
+    pickle
+    cv2
+    sklearn
+    matplotlib
+    tqdm
+    random
+
+Other Resources:
+    https://www.pyimagesearch.com/2018/04/16/keras-and-convolutional-neural-networks-cnns/
+
+
+
+Team Roles:
+Danny: Implemeted scraper.py
+Cameron: Implemented train.py
+Femi: Implemeted classify.py
+
