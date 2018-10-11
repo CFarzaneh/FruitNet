@@ -13,7 +13,7 @@ args['image']=imagePath
 
 image = cv2.imread(args["image"])
 output = image.copy()
- 
+
 image = cv2.resize(image, (96, 96))
 image = image.astype("float") / 255.0
 image = img_to_array(image)
@@ -23,15 +23,6 @@ print("[INFO] loading network...")
 model = load_model(args["model"])
 lb = pickle.loads(open(args["labelbin"], "rb").read())
 
-print("[INFO] classifying image...")
-proba = model.predict(image)[0]
-idx = np.argmax(proba)
-label = lb.classes_[idx]
-
-print("[INFO] loading network...")
-model = load_model(args["model"])
-lb = pickle.loads(open(args["labelbin"], "rb").read())
- 
 print("[INFO] classifying image...")
 proba = model.predict(image)[0]
 idx = np.argmax(proba)
